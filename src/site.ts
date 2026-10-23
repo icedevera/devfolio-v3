@@ -6,6 +6,7 @@ export const SITE = {
 export const LINKS = [
   { name: "GitHub", href: "https://github.com/icedevera" },
   { name: "LinkedIn", href: "https://linkedin.com/in/icedevera" },
+  { name: "Source", href: "https://github.com/icedevera/devfolio-v3" },
 ];
 
 export function formatDate(date: Date, month: "short" | "long" = "long") {

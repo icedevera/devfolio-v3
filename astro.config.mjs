@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://icedevera.com",
+  site: "https://www.icedevera.com",
   devToolbar: { enabled: false },
   // Match v2's URLs: /articles/<slug>, no trailing slash.
   trailingSlash: "never",
