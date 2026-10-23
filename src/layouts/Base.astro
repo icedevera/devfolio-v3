@@ -1,0 +1,52 @@
+---
+import "@fontsource-variable/martian-mono/standard.css";
+// The Latin face, fetched with the page rather than once the CSS asks for
+// it: the scene waits on it to measure the tree.
+import latin from "@fontsource-variable/martian-mono/files/martian-mono-latin-standard-normal.woff2?url";
+import Analytics from "../components/Analytics.astro";
+import { SITE } from "../site";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  type?: "website" | "article";
+  // Pages without a stable address of their own, like the 404 page, skip it.
+  canonical?: boolean;
+}
+
+const { title, description = SITE.description, type = "website", canonical = true } = Astro.props;
+const pageTitle = title ? `${title} - ${SITE.name}` : SITE.name;
+// Built pages end in .html, which their public address leaves off.
+const path = Astro.url.pathname.replace(/(\/index)?\.html$/, "") || "/";
+const url = new URL(path, Astro.site);
+// Vercel serves its analytics script only to sites it builds; elsewhere
+// (development, a local preview) it would fail to load.
+const analytics = import.meta.env.VERCEL === "1";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- This site's code is GPL-3.0. Its source: https://github.com/icedevera/devfolio-v3. Third-party licenses: /licenses.txt -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="preload" href={latin} as="font" type="font/woff2" crossorigin />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title ?? SITE.name} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    {canonical && <meta property="og:url" content={url} />}
+    {canonical && <link rel="canonical" href={url} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={SITE.name} href="/feed.xml" />
+  </head>
+  <body>
+    <slot />
+    {analytics && <Analytics />}
+  </body>
+</html>

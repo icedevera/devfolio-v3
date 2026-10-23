@@ -1,0 +1,180 @@
+:root {
+  color-scheme: dark;
+  --soil: #161411;
+  --stone: #201d19;
+  --text: #e4dccb;
+  --muted: #8d8676;
+  --blossom: #f2b8c6;
+  --leaf: #94ad7f;
+  --bark: #b8916b;
+  --gutter: clamp(1.5rem, 7vw, 7rem);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--soil);
+  color: var(--text);
+  font-family: "Martian Mono Variable", ui-monospace, monospace;
+  font-size: 0.8125rem;
+  font-stretch: 87.5%;
+  font-weight: 260;
+  line-height: 1.8;
+  -webkit-text-size-adjust: 100%;
+}
+
+main {
+  position: relative;
+  max-width: calc(40rem + 2 * var(--gutter));
+  margin-inline: auto;
+  padding: clamp(3.5rem, 12vh, 8rem) var(--gutter) 6rem;
+}
+
+::selection {
+  background: rgb(242 184 198 / 0.25);
+}
+
+h1 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  font-stretch: 100%;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+a,
+button {
+  color: inherit;
+  text-decoration: underline 1px rgb(228 220 203 / 0.3);
+  text-underline-offset: 0.25em;
+}
+
+a:hover,
+button:hover {
+  color: var(--blossom);
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--blossom);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* Browsers give code its own monospace; the page's already is one. */
+code,
+pre {
+  font-family: inherit;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+/* The way back, above a page's title. */
+.trail {
+  margin-bottom: 3rem;
+}
+
+/* Articles: a little larger and heavier than the home page, for reading. */
+.prose {
+  font-size: 0.875rem;
+  font-weight: 300;
+  line-height: 1.85;
+}
+
+.prose :is(p, ul, ol, blockquote) {
+  margin: 0 0 1.25em;
+}
+
+/* Article headings wrap, so their lines sit closer. */
+.prose :is(h1, h2, h3) {
+  line-height: 1.5;
+}
+
+.prose :is(h2, h3) {
+  margin: 2.75em 0 0.75em;
+  font-stretch: 100%;
+  font-weight: 600;
+}
+
+.prose h2 {
+  font-size: 1rem;
+}
+
+.prose h3 {
+  font-size: inherit;
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose :is(ul, ol) {
+  padding-left: 2ch;
+}
+
+.prose ul {
+  list-style-type: "- ";
+}
+
+.prose li::marker {
+  color: var(--muted);
+}
+
+.prose blockquote {
+  padding-left: 2ch;
+  border-left: 1px solid var(--muted);
+  color: var(--muted);
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 2em 0;
+  border-radius: 4px;
+}
+
+.prose :not(pre) > code {
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  background: var(--stone);
+  font-size: 0.9em;
+}
+
+.astro-code {
+  --astro-code-foreground: var(--text);
+  --astro-code-background: var(--stone);
+  --astro-code-token-comment: var(--muted);
+  --astro-code-token-punctuation: var(--muted);
+  --astro-code-token-keyword: var(--blossom);
+  --astro-code-token-constant: var(--bark);
+  --astro-code-token-link: var(--blossom);
+  --astro-code-token-string: var(--leaf);
+  --astro-code-token-string-expression: var(--leaf);
+  --astro-code-token-function: var(--text);
+  --astro-code-token-parameter: var(--text);
+  margin: 0 0 1.5em;
+  padding: 1em 1.25em;
+  border-radius: 4px;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+}

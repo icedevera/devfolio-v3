@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import Name from "../../components/Name.astro";
+import Base from "../../layouts/Base.astro";
+import { formatDate, SITE } from "../../site";
+
+const articles = (await getCollection("articles")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
+---
+
+<Base title="Writing" description={`Articles by ${SITE.name}.`}>
+  <main>
+    <nav class="trail"><a href="/"><Name /></a></nav>
+    <h1>Writing</h1>
+    <ul>
+      {
+        articles.map((article) => (
+          <li>
+            <a href={`/articles/${article.id}`}>{article.data.title}</a>
+            <time class="muted" datetime={article.data.date.toISOString().slice(0, 10)}>
+              {formatDate(article.data.date, "short")}
+            </time>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+</Base>
+
+<style>
+  ul {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Title and date side by side, aligned on the monospace grid. */
+  li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 2ch;
+  }
+
+  li + li {
+    margin-top: 0.75rem;
+  }
+
+  @media (max-width: 40rem) {
+    li {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

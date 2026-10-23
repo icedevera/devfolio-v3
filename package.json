@@ -1,0 +1,26 @@
+{
+  "name": "devfolio-v3",
+  "type": "module",
+  "private": true,
+  "license": "GPL-3.0-only",
+  "engines": {
+    "node": ">=22.23.4"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@fontsource-variable/martian-mono": "^5.3.0",
+    "astro": "^7.4.2",
+    "three": "0.186.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/three": "0.186.0",
+    "typescript": "^6.0.0"
+  }
+}

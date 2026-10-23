@@ -1,0 +1,37 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import Name from "../../components/Name.astro";
+import Base from "../../layouts/Base.astro";
+import { formatDate } from "../../site";
+
+interface Props {
+  article: CollectionEntry<"articles">;
+}
+
+export async function getStaticPaths() {
+  const articles = await getCollection("articles");
+  return articles.map((article) => ({
+    params: { slug: article.id },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { title, description, date } = article.data;
+const { Content } = await render(article);
+---
+
+<Base title={title} description={description} type="article">
+  <main>
+    <nav class="trail">
+      <a href="/"><Name /></a> <span class="muted">/</span> <a href="/articles">Writing</a>
+    </nav>
+    <article class="prose">
+      <h1>{title}</h1>
+      <p class="muted">
+        <time datetime={date.toISOString().slice(0, 10)}>{formatDate(date)}</time>
+      </p>
+      <Content />
+    </article>
+  </main>
+</Base>
