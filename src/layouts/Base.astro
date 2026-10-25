@@ -39,7 +39,11 @@ const analytics = import.meta.env.VERCEL === "1";
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title ?? SITE.name} />
     <meta property="og:description" content={description} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={new URL("/og.png", Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`A pixel-art bonsai in blossom at dusk, above the words "${SITE.name}, Software Engineer"`} />
+    <meta name="twitter:card" content="summary_large_image" />
     {canonical && <meta property="og:url" content={url} />}
     {canonical && <link rel="canonical" href={url} />}
     <link rel="icon" href="/favicon.ico" sizes="32x32" />
